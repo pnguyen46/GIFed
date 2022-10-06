@@ -9,12 +9,14 @@ const App = () => {
   const apiKey = 'DqiiWZTO4ewfbx2OBPgF1DjiIDCPLQ1D';
   const [data,setData] = useState([]);
   const [query,setQuery] = useState('cats');
+  const [isLoading,setIsLoading] = useState(true);
 
   //retrieve data from server using the "query" state
   useEffect(() => {
     axios(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=${apiKey}`)
       .then(res => setData(res.data.data))
       .catch(error => console.log(`Error fetching and parsing data`,error))
+      .finally(() => setIsLoading(false))
   },[query])
 
   //Set the query value
@@ -32,7 +34,7 @@ const App = () => {
       </div>
       <div className="main-content">
         {/* pass down the data state */}
-        <GifList data={data} /> 
+        {isLoading ? <p>Loading...</p> : <GifList data={data}/>}
       </div>
     </>
   );
