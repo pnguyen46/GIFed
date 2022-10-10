@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 
 function SearchForm({onSearch}) {
-  const [searchText,setSearchText] = useState('');
+  const [searchText,setSearchText] = useState('cat');
 
   const onSearchChange = (e) => { 
     setSearchText(e.target.value);

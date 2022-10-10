@@ -13,8 +13,8 @@ const App = () => {
 
   //retrieve data from server using the "query" state
   useEffect(() => {
-    axios(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=${apiKey}`)
-      .then(res => setData(res.data.data))
+    axios(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}`)
+      .then(res => setData(shuffleArray(res.data.data)))
       .catch(error => console.log(`Error fetching and parsing data`,error))
       .finally(() => setIsLoading(false))
   },[query])
@@ -23,6 +23,19 @@ const App = () => {
   const performSearch = (value) => {
     setQuery(value);
   }
+
+  /* Randomize array */
+  const shuffleArray = (array) => {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
+  }
+
+
   return (
     <>
       <div className="main-header">
