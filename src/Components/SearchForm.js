@@ -1,16 +1,12 @@
-import React,{useState} from 'react';
+import React,{useRef} from 'react';
 
 function SearchForm({onSearch}) {
-  const [searchText,setSearchText] = useState('');
+  const inputEle = useRef();
 
-  const onSearchChange = (e) => { 
-    setSearchText(e.target.value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    e.currentTarget.reset();
-    onSearch(searchText);
+    onSearch(inputEle.current.value);
     e.currentTarget.reset();
   }
 
@@ -18,8 +14,8 @@ function SearchForm({onSearch}) {
     <form className="search-form" onSubmit={handleSubmit}>
       <label className="is-hidden" htmlFor="search">Search</label>
       <input type="search"
-        onChange={onSearchChange} //this value will update state
         name="search"
+        ref={inputEle}
         placeholder="Search..."
       />
       <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
