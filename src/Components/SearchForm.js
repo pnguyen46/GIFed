@@ -3,7 +3,6 @@ import React,{useRef} from 'react';
 function SearchForm({onSearch}) {
   const inputEle = useRef();
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(inputEle.current.value);

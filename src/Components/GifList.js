@@ -3,9 +3,8 @@ import Gif from './Gif';
 import NoGifs from './NoGifs';
 
 const GifList = props => { 
-  
-  const results = props.data;
   let gifs;
+  const results = props.data;
   if (results.length) {
     gifs = results.map(gif => <Gif url={gif.images.fixed_height.url} key={gif.id} />);    
   } else {
