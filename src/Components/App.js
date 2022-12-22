@@ -13,7 +13,7 @@ const App = () => {
 
   //retrieve data from server using the "query" state
   useEffect(() => {
-    axios(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}`)
+    axios(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}`)
       .then((res) => setData(shuffleArray(res.data.data)))
       .catch((error) => console.log(`Error fetching and parsing data`, error))
       .finally(() => setIsLoading(false));
